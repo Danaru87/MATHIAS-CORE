@@ -1,5 +1,3 @@
-# MATHIAS-CORE
+# MATHIAS
 
-Core library
-
-Contain Model.dll, Core.dll et Acces to DB
+Home IA for Domotic and Digital interactivity
