@@ -1,3 +1,3 @@
 # MATHIAS
 
-Home IA for Domotic and Digital interactivity
+Home AI for Domotic and Home Digital interactivity
