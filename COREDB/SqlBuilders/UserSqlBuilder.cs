@@ -20,7 +20,7 @@ namespace COREDB.SqlBuilders
 
         private void CheckTableInDatabase()
         {
-            using (sqlClient = new SqlConnection("Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = master; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False"))
+            using (sqlClient = new SqlConnection("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = master; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False"))
             {
                 SqlCommand cmd = new SqlCommand("Select name from sysobject where name='USERS')", sqlClient);
                 String tableName = sqlClient.Query<String>("Select name from sysobject where name = 'USERS'").First();
@@ -61,7 +61,7 @@ namespace COREDB.SqlBuilders
         public static void CheckIntegrity()
         {
             List<PropertyInfo> properties = typeof(USERS).GetProperties().ToList();
-            GetDBScheme();
+            //GetDBScheme();
         }
     }
 }

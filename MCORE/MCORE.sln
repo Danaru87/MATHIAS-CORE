@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COREMODEL", "..\COREMODEL\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COREDB", "..\COREDB\COREDB.csproj", "{FE262DC6-124A-4387-9444-3A5371A13EEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinConfigurator", "..\WinConfigurator\WinConfigurator.csproj", "{2D5CCDC8-BCBB-4088-8D5B-C6CAD3F9EF37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FE262DC6-124A-4387-9444-3A5371A13EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE262DC6-124A-4387-9444-3A5371A13EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE262DC6-124A-4387-9444-3A5371A13EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D5CCDC8-BCBB-4088-8D5B-C6CAD3F9EF37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5CCDC8-BCBB-4088-8D5B-C6CAD3F9EF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5CCDC8-BCBB-4088-8D5B-C6CAD3F9EF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5CCDC8-BCBB-4088-8D5B-C6CAD3F9EF37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,6 +22,7 @@ namespace COREDB.SqlBuilders
                     return "ntext";
 
             }
+            return null;
         }
     }
 }
