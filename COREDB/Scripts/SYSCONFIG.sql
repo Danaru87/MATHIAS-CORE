@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[SYSCONFIG]
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	[NAME] varchar(255) NOT NULL,
+	[VALUE] ntext
+)
