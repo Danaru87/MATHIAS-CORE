@@ -84,6 +84,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\SYSCONFIG.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\USERS.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -7,6 +7,7 @@ using System.IO;
 using System.Data.SqlClient;
 using Dapper;
 using System.Reflection;
+using System.Configuration;
 
 namespace COREDB
 {
@@ -19,7 +20,7 @@ namespace COREDB
 
         public DBManager()
         {
-            sqlClient = new SqlConnection("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = master; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
+            sqlClient = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
         }
 
         private void CreateDataBase()
