@@ -1,4 +1,5 @@
-﻿using System;
+﻿using COREDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace MCORE
         private string password { get; set; }
 
         public bool CONNECTED { get; set; }
+        private DBManager dbManager { get; set; }
 
         public MathiasCore()
         {
+            dbManager = new DBManager();
         }
 
         public bool Connect(string _login, string _password)
