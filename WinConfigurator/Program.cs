@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCORE;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using System.Windows.Forms;
 
 namespace WinConfigurator
 {
+
     static class Program
     {
         /// <summary>

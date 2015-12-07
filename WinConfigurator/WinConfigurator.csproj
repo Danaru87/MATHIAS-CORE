@@ -44,6 +44,8 @@
       <HintPath>..\MCORE\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -59,6 +61,7 @@
       <HintPath>..\MCORE\packages\System.Data.SQLite.Linq.1.0.98.1\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,18 +71,39 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\USERSForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\USERSForm.Designer.cs">
+      <DependentUpon>USERSForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mathias Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mathias Manager.Designer.cs">
+      <DependentUpon>Mathias Manager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\USERSForm.resx">
+      <DependentUpon>USERSForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mathias Manager.resx">
+      <DependentUpon>Mathias Manager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,11 +136,20 @@
     <None Include="Resources\Hopstarter-Sleek-Xp-Basic-Delete.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\COREDB\COREDB.csproj">
+      <Project>{fe262dc6-124a-4387-9444-3a5371a13eec}</Project>
+      <Name>COREDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\COREMODEL\COREMODEL.csproj">
+      <Project>{84e5f690-4e89-453c-a1f3-2781894123ce}</Project>
+      <Name>COREMODEL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MCORE\CORE.csproj">
       <Project>{242f9eb8-5aef-4c79-97b7-4e4b7ce1c2cd}</Project>
       <Name>CORE</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\MCORE\packages\System.Data.SQLite.Core.1.0.98.1\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\MCORE\packages\System.Data.SQLite.Core.1.0.98.1\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

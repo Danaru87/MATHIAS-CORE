@@ -15,25 +15,22 @@ namespace WinConfigurator
     public partial class Form1 : Form
     {
         public MathiasCore matCore;
-        Thread connectThread;
         public Form1()
         {
             InitializeComponent();
             matCore = new MathiasCore();
         }
 
-        private void Connect()
+        private bool Connect()
         {
-            btnConnect.Invoke(new Action(() => btnConnect.Enabled = false ));
             bool connected = matCore.Connect(txtUsername.Text, txtPass.Text);
             if (connected)
             {
-                label3.Invoke(new Action(() => label3.Text = "Connected !"));
+                return true;
             }
             else
             {
-                btnConnect.Invoke(new Action(() => btnConnect.Enabled = true));
-                label3.Invoke(new Action(() => label3.Text = "Failed !"));
+                return false;
             }
         }
 
@@ -44,12 +41,18 @@ namespace WinConfigurator
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            connectThread.Start();
-        }
+            label4.Text = "Connexion en cours ....";
+            bool connected = Task.Factory.StartNew(() => Connect()).Result;
+            if (connected)
+            {
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            connectThread = new Thread(Connect);
+                Mathias_Manager window = new Mathias_Manager(matCore);
+                window.Location = this.Location;
+                window.StartPosition = FormStartPosition.Manual;
+                window.FormClosing += delegate { this.Show(); };
+                window.Show();
+                this.Hide();
+            }
         }
     }
 }

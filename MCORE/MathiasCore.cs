@@ -14,6 +14,7 @@ namespace MCORE
 
         public bool CONNECTED { get; set; }
         private DBManager dbManager { get; set; }
+        public DBContext context { get; set; }
 
         public MathiasCore()
         {
@@ -22,16 +23,15 @@ namespace MCORE
 
         public bool Connect(string _login, string _password)
         {
-            if (_login.Equals("matAdmin") && _password.Equals("m4t4dm!n"))
+            using (context = new DBContext())
             {
-                CONNECTED = true;
+                if(context.CheckUser(_login, _password))
+                {
+                    CONNECTED = true;
+                }
+                else { CONNECTED = false; }
             }
-            else { CONNECTED = false; }
-
             return CONNECTED;
         }
-
-
-
     }
 }
