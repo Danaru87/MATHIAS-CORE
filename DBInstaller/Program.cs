@@ -14,6 +14,8 @@ namespace DBInstaller
             Console.WriteLine("Installation de la base de données en cours...");
             DBManager.InstallDB();
             Console.WriteLine("Installation terminée, merci de rester sympa avec votre nouvelle IA");
+            Console.WriteLine("Appuyer sur une touche pour quitter");
+            Console.ReadKey();
         }
     }
 }

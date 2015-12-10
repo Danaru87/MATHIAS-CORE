@@ -17,6 +17,12 @@ namespace COREDB
             sqLite = new SQLiteConnection("Data Source = C:\\MATHIAS\\database\\mathias.sqlite; Version = 3;");
         }
 
+        /// <summary>
+        /// Vérifie le login et le pass de l'utilisateur
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="passwd"></param>
+        /// <returns></returns>
         public bool CheckUser(string login, string passwd)
         {
             try

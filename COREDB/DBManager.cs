@@ -3,85 +3,73 @@ using System.Data.SQLite;
 using System.Configuration;
 using System.IO;
 using Dapper;
+using System.Reflection;
 
 namespace COREDB
 {
-    public class DBManager : IDisposable
+    public class DBManager
     {
         private bool _dbExist { get; set; }
         
         private SQLiteConnection sqlClient { get; set; }
+        private String SQLCHAIN = String.Format("Data Source = {0}\\database\\mathias.sqlite; Version = 3;", Directory.GetCurrentDirectory());
 
 
         public DBManager()
         {
-            bool exist = File.Exists("C:\\MATHIAS\\database\\mathias.sqlite");
+            CheckFolders();
+            CheckDBFile();
+        }
+
+
+        /// <summary>
+        /// Vérification de la présence du dossier database dans le dossier d'installation
+        /// </summary>
+        private void CheckFolders()
+        {
+            bool databaseDirectory = Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "database"));
+            if (!databaseDirectory)
+            {
+                //TODO : Log DEBUG
+                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "database"));
+            }
+        }
+
+        /// <summary>
+        /// Vérification de la présence de la base de donnée embarquée
+        /// </summary>
+        private void CheckDBFile()
+        {
+            String folderDirectory = Path.Combine(Directory.GetCurrentDirectory(), "database");
+            bool exist = File.Exists(Path.Combine(folderDirectory, "mathias.sqlite"));
             if (!exist)
             {
-                SQLiteConnection.CreateFile("C:\\MATHIAS\\database\\mathias.sqlite");
-                sqlClient = new SQLiteConnection("Data Source = C:\\MATHIAS\\database\\mathias.sqlite; Version = 3;");
+                SQLiteConnection.CreateFile(Path.Combine(folderDirectory, "mathias.sqlite"));
                 CreateDataBase();
             }
-            else
-            {
-                sqlClient = new SQLiteConnection("Data Source = C:\\MATHIAS\\database\\mathias.sqlite; Version = 3;");
-            }
 
         }
 
-        public static bool InstallDB()
-        {
-            
-            bool existFolderMathias = Directory.Exists("C:\\MATHIAS");
-            bool existDatabaseFodler = Directory.Exists("C:\\MATHIAS\\database");
-            bool exist = File.Exists("C:\\MATHIAS\\database\\mathias.sqlite");
-
-            if (!existFolderMathias)
-            {
-                Console.WriteLine("Création du dossier d'installation MATHIAS");
-                Directory.CreateDirectory("C:\\MATHIAS");
-            }
-            if (!existDatabaseFodler)
-            {
-                Console.WriteLine("Création du dossier database");
-                Directory.CreateDirectory("C:\\MATHIAS\\databse");
-            }
-            if (!exist)
-            {
-                Console.WriteLine("Création du fichier de la base de données sqlite.");
-                SQLiteConnection.CreateFile("C:\\MATHIAS\\database\\mathias.sqlite");
-            }
-            Console.WriteLine("Connection à la base nouvellement créé...");
-            SQLiteConnection sqlClient = new SQLiteConnection("Data Source = C:\\MATHIAS\\database\\mathias.sqlite; Version = 3;");
-
-            Console.WriteLine("Création des tables et des enregistrements");
-            string line;
-            StreamReader file = new StreamReader("Scripts/InstallDB.ini");
-            while ((line = file.ReadLine()) != null)
-            {
-                string queries = File.ReadAllText(Path.Combine("Scripts", line));
-                queries = queries.Replace("\n", "");
-                sqlClient.Execute(queries);
-            }
-            Console.WriteLine("Fin de l'installation de la base de données Mathias");
-            return true;
-        }
+        /// <summary>
+        /// Création des tables et des enregistrements dans la base de données
+        /// </summary>
         private void CreateDataBase()
         {
             string line;
             StreamReader file = new StreamReader("Scripts/InstallDB.ini");
             while((line =file.ReadLine()) != null)
             {
-                string queries = File.ReadAllText(Path.Combine("Scripts", line));
-                queries = queries.Replace("\n", "");
-                sqlClient.Execute(queries);
+                try {
+                    string queries = File.ReadAllText(Path.Combine("Scripts", line));
+                    queries = queries.Replace("\n", "");
+                    using (sqlClient = new SQLiteConnection(SQLCHAIN))
+                    {
+                            sqlClient.Execute(queries);
+      
+                    }
+                }
+                catch { } 
             }
-        }
-
-        public void Dispose()
-        {
-            sqlClient.Close();
-            sqlClient.Dispose();
         }
     }
 }
