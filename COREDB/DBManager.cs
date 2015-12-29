@@ -59,16 +59,24 @@ namespace COREDB
             StreamReader file = new StreamReader("Scripts/InstallDB.ini");
             while((line =file.ReadLine()) != null)
             {
-                try {
+                try
+                {
                     string queries = File.ReadAllText(Path.Combine("Scripts", line));
                     queries = queries.Replace("\n", "");
                     using (sqlClient = new SQLiteConnection(SQLCHAIN))
                     {
-                            sqlClient.Execute(queries);
-      
+                        sqlClient.Execute(queries);
+
                     }
                 }
-                catch { } 
+                catch (SQLiteException e)
+                {
+                    Console.WriteLine(e);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                } 
             }
         }
     }
