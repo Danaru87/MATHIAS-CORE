@@ -52,6 +52,8 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(186, 20);
             this.txtPass.TabIndex = 2;
+            this.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // label1
             // 
