@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using System.IO;
 
 namespace COREDB
 {
@@ -14,7 +15,7 @@ namespace COREDB
         private SQLiteConnection sqLite { get; set; }
         public DBContext()
         {
-            sqLite = new SQLiteConnection("Data Source = C:\\MATHIAS\\database\\mathias.sqlite; Version = 3;");
+            sqLite = new SQLiteConnection(String.Format("Data Source = {0}\\database\\mathias.sqlite; Version = 3;", Directory.GetCurrentDirectory()));
         }
 
         /// <summary>

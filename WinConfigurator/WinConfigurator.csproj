@@ -94,6 +94,12 @@
     <Compile Include="Mathias Manager.Designer.cs">
       <DependentUpon>Mathias Manager.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MatViewer.Designer.cs">
+      <DependentUpon>MatViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\USERSForm.resx">

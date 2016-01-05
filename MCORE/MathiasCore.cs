@@ -1,4 +1,5 @@
 ﻿using COREDB;
+using MCORE.Kinect;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace MCORE
         public bool CONNECTED { get; set; }
         private DBManager dbManager { get; set; }
         public DBContext context { get; set; }
+
+        public KinectAudioController KinectAudio = new KinectAudioController();
 
         public MathiasCore()
         {
