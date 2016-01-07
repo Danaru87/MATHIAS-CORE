@@ -28,6 +28,7 @@ namespace MCORE
             {
                 CONNECTED = true;
                 dbManager = new DBManager();
+                DBCONTEXT = new DBContext();
                 kinect = KinectSensor.GetDefault();
             }
             else { CONNECTED = false; }

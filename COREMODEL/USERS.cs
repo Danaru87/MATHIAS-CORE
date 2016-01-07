@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace COREMODEL
 {
-
+    public enum State { DISCONNECTED, CONNECTED }
     public class USERS
     {
         public String FIRSTNAME { get; set; }
@@ -16,7 +16,7 @@ namespace COREMODEL
         public String PASSWD { get; set; }
 
         public Int32 ID { get { return _id; } }
-
+        
         public State STATE { get { return _state; } }
 
         private State _state { get; set; }

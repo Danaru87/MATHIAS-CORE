@@ -72,6 +72,7 @@
     <Compile Include="Kinect\Controls.cs" />
     <Compile Include="Kinect\KinectAudioStream.cs" />
     <Compile Include="MathiasCore.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NewFolder1\" />
-    <Folder Include="Plugins\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COREDB\COREDB.csproj">
