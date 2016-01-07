@@ -74,6 +74,11 @@ namespace WinConfigurator
             txtUsername.Enabled = true;
             txtPass.Enabled = true;
             label4.Text = "Mathias est prêt, vous pouvez vous connecter";
+            matCore.kinect.Open();
+            if (!matCore.kinect.IsAvailable)
+            {
+                label4.Text = "ATTENTION : AUCUNE KINECT N'EST DETECTE !!!";
+            }
         }
 
         private void InitMathias()

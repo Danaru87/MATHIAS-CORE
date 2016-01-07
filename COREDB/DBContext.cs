@@ -34,6 +34,20 @@ namespace COREDB
             catch (SQLiteException exception) { return false; }
         }
 
+        /// <summary>
+        /// Retourne la liste des utilisateurs existants dans le système
+        /// </summary>
+        /// <returns>Liste des utilisateurs</returns>
+        public List<USERS> GetUsersList()
+        {
+            try
+            {
+                List<USERS> userList = sqLite.Query<USERS>("SELECT * FROM USERS").ToList();
+                return userList;
+            }
+            catch (Exception e) { return null; }
+        }
+
         public void Dispose()
         {
             sqLite.Close();
