@@ -93,6 +93,8 @@
     <Content Include="Scripts\SYSPLUGINS.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\WORDS.sql" />
+    <Content Include="Scripts\WORDS_CMD.sql" />
     <Content Include="Scripts\Weather.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

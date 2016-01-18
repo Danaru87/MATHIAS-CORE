@@ -10,28 +10,40 @@ namespace COREDB
     public class DBManager
     {
         private bool _dbExist { get; set; }
-        
+        private String DBPATH {get;set;}
         private SQLiteConnection sqlClient { get; set; }
         private String SQLCHAIN = String.Format("Data Source = {0}\\database\\mathias.sqlite; Version = 3;", Directory.GetCurrentDirectory());
 
-
+        /// <summary>
+        /// Contructor with default database path
+        /// </summary>
         public DBManager()
         {
+            DBPATH = Path.Combine(Directory.GetCurrentDirectory(), "database");
             CheckFolders();
             CheckDBFile();
         }
 
-
+        /// <summary>
+        /// Constructo with custom database path
+        /// </summary>
+        /// <param name="PathToDB"></param>
+        public DBManager(string PathToDB)
+        {
+            DBPATH = PathToDB;
+            CheckFolders();
+            CheckDBFile();
+        }
         /// <summary>
         /// Vérification de la présence du dossier database dans le dossier d'installation
         /// </summary>
         private void CheckFolders()
         {
-            bool databaseDirectory = Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "database"));
+            bool databaseDirectory = Directory.Exists(Path.Combine(DBPATH));
             if (!databaseDirectory)
             {
                 //TODO : Log DEBUG
-                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "database"));
+                Directory.CreateDirectory(Path.Combine(DBPATH));
             }
         }
 
@@ -40,11 +52,10 @@ namespace COREDB
         /// </summary>
         private void CheckDBFile()
         {
-            String folderDirectory = Path.Combine(Directory.GetCurrentDirectory(), "database");
-            bool exist = File.Exists(Path.Combine(folderDirectory, "mathias.sqlite"));
+            bool exist = File.Exists(Path.Combine(DBPATH, "mathias.sqlite"));
             if (!exist)
             {
-                SQLiteConnection.CreateFile(Path.Combine(folderDirectory, "mathias.sqlite"));
+                SQLiteConnection.CreateFile(Path.Combine(DBPATH, "mathias.sqlite"));
                 CreateDataBase();
             }
 

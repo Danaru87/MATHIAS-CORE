@@ -78,9 +78,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\COREDB\COREDB.csproj">
       <Project>{fe262dc6-124a-4387-9444-3a5371a13eec}</Project>

@@ -1,38 +1,40 @@
 ﻿using COREDB;
 using MCORE.Kinect;
 using Microsoft.Kinect;
-using Microsoft.Kinect.Tools;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MCORE
 {
     public class MathiasCore
     {
-        private string user { get; set; }
-        private string password { get; set; }
-
+        private String DBPATH { get; set; }
         public bool CONNECTED { get; set; }
         private DBManager dbManager { get; set; }
         public DBContext DBCONTEXT { get; set; }
         public KinectSensor kinect = null;
-        public KinectAudioController KinectAudio = new KinectAudioController();
+        public KinectAudioController KinectAudio;
 
-        public MathiasCore(string login, string password)
+        /// <summary>
+        /// Simply a empty Constructor
+        /// </summary>
+        public MathiasCore()
         {
-            if (Connect(login, password))
-            {
-                CONNECTED = true;
-                dbManager = new DBManager();
-                DBCONTEXT = new DBContext();
-                kinect = KinectSensor.GetDefault();
-            }
-            else { CONNECTED = false; }
+            CONNECTED = false;
+            KinectAudio = new KinectAudioController();
+            kinect = KinectSensor.GetDefault();
+            dbManager = new DBManager();
+        }
 
+        /// <summary>
+        /// Constructor with database path
+        /// </summary>
+        /// <param name="PathToDatabase">path to database folder</param>
+        public MathiasCore(string PathToDatabase)
+        {
+            DBPATH = PathToDatabase;
+            KinectAudio = new KinectAudioController();
+            kinect = KinectSensor.GetDefault();
+            dbManager = new DBManager(DBPATH);
         }
 
         public bool Connect(string _login, string _password)
@@ -42,6 +44,14 @@ namespace MCORE
                 if(DBCONTEXT.CheckUser(_login, _password))
                 {
                     CONNECTED = true;
+                    if (String.IsNullOrEmpty(DBPATH))
+                    {
+                        DBCONTEXT = new DBContext();
+                    }
+                    else
+                    {
+                        DBCONTEXT = new DBContext(DBPATH);
+                    }
                 }
                 else { CONNECTED = false; }
             }
