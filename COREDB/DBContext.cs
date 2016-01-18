@@ -18,6 +18,11 @@ namespace COREDB
             sqLite = new SQLiteConnection(String.Format("Data Source = {0}\\database\\mathias.sqlite; Version = 3;", Directory.GetCurrentDirectory()));
         }
 
+        public DBContext(string databasePath)
+        {
+            sqLite = new SQLiteConnection(String.Format("Data Source = {0}\\mathias.sqlite; Version = 3;", databasePath));
+        }
+
         /// <summary>
         /// Vérifie le login et le pass de l'utilisateur
         /// </summary>
