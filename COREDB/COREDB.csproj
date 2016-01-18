@@ -87,6 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\COMMANDS.sql" />
+    <Content Include="Scripts\DIC_FR.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\SYSCONFIG.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
