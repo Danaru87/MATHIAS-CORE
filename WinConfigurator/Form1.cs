@@ -83,7 +83,7 @@ namespace WinConfigurator
 
         private void InitMathias()
         {
-            matCore = new MathiasCore();
+            matCore = new MathiasCore(txtUsername.Text, txtPass.Text);
         }
 
         private void Form1_Load(object sender, EventArgs e)
